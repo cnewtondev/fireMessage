@@ -1,13 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {Route, BrowserRouter as Router} from 'react-router-dom'
+
+//components
+import Login from './login/Login'
+import Signup from './signup/Signup'
+import Dashboard from './dashboard/Dashboard'
+
+const firebase = require('firebase')
+require('firebase/firestore')
+
+firebase.initializeApp({
+  // FIRE!!!
+})
+
+const routing = (
+  <Router>
+    <div id="routing-container">
+      <Route path='/login' component={Login}></Route>
+      <Route path='/signup' component={Signup}></Route>
+      <Route path='/dashboard' component={Dashboard}></Route>
+    </div>
+  </Router>
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  routing,
   document.getElementById('root')
 );
 
