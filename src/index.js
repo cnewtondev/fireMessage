@@ -13,7 +13,7 @@ const firebase = require('firebase')
 require('firebase/firestore')
 
 firebase.initializeApp({
-  // FIRE!!!
+  // FIRE!
 })
 
 const routing = (
