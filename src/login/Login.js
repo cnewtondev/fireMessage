@@ -14,30 +14,6 @@ const firebase = require('firebase')
 
 class Login extends React.Component {
 
-    userTyping = (type, e)=>{
-        switch (type){
-            case 'email':
-                this.setState({email: e.target.value})
-                break;
-
-            case 'password':
-                this.setState({password: e.target.value})
-                break;    
-        }
-    }
-
-    submitLogin = (e) =>{
-        e.preventDefault()
-        
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(()=>{
-            this.props.history.push('/dashboard')
-        }, err => {
-            this.setState({loginError: `${err}`})
-            console.log(err)
-        })
-    }
-
     constructor(){
         super();
         this.state = {

@@ -13,50 +13,6 @@ const firebase = require("firebase");
 
 class Signup extends React.Component {
 
-    formIsValid =() => this.state.password === this.state.passwordConfirmation
-
-    userTyping=(type, e) =>{
-        switch (type) {
-            case 'email':
-                this.setState({email: e.target.value})
-                break;
-            case 'password':
-                this.setState({password: e.target.value})
-                break;
-                case 'password':
-                this.setState({passwordConfirmation: e.target.valueE})
-                break;
-            default:
-                break;
-        }
-    }
-
-    submitSignup=(e)=>{
-        e.preventDefault()
-       if(!this.formIsValid()){
-           this.setState({signupError: 'passwords do not match'})
-       }
-
-       firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-       .then(authRes => {
-           const userObj = {
-               email: authRes.user.email
-           }
-           firebase.firestore().collection('users')
-           .doc(this.state.email).set(userObj)
-           .then(()=>{
-               this.props.history.push('/dashboard')
-           }, dbError=>{
-               console.log(dbError)
-               this.setState({signupError: 'Database error. Please try again later.'})
-           })
-        
-       }, authError =>{
-           console.log(authError)
-           this.setState({signupError: 'Failed to add user :('})
-       })
-    }
-
 constructor(){
     super()
         this.state = {
